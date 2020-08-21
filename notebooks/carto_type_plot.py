@@ -4,8 +4,20 @@ import matplotlib.pyplot as plt
 # default value already set as 'other'
 
 tag_styles = {
+    'aerialway': {
+        'cable_car': {'linecolor': '#808080'},
+        'chair_lift': {'linecolor': '#808080'},
+        'draglift': {'linecolor': '#808080'},
+        'gondola': {'linecolor': '#808080'},
+        'j-bar': {'linecolor': '#808080'},
+        't-bar': {'linecolor': '#808080'},
+        'mixed_lift': {'linecolor': '#808080'},
+        'platter': {'linecolor': '#808080'},
+        'rope_tow': {'linecolor': '#808080'},
+        'zip_line': {'linecolor': '#808080'},
+    },
     'aeroway': {
-        'runway':{'facecolor': '#bbc', 'linecolor': '#bbc', 'linewidth': 30},
+        'runway': {'facecolor': '#bbc', 'linecolor': '#bbc', 'linewidth': 30},
     },
     'amenity': {
         # generic base styles (not a tag)
@@ -16,7 +28,7 @@ tag_styles = {
         'societal_amenities': {'facecolor': '#ffffe5', 'edgecolor': '#595950'},
         # tags
         'fire_station': {'facecolor': '#F3E3DD'},
-        'parking': {'facecolor': '#eeeeee'},
+        'parking': {'facecolor': '#eeeeee', 'edgecolor': '#616161'}, # added edgecolor
         'pub': {'facecolor': 'none'},
         'other': {'facecolor': 'none'},
     },
@@ -29,7 +41,12 @@ tag_styles = {
         'kerb': {'linecolor': 'none'},
         'other': {'linecolor': '#444'},
     },
+    'boundary': {
+        'administrative': {'facecolor': 'none', 'edgecolor': '#8d618b', 'linecolor': '#8d618b'},
+        'other': {'facecolor': 'none', 'edgecolor': '#8d618b', 'linecolor': '#8d618b'},
+    },
     'building': {
+        'apartments': {'facecolor': '#d9d0c9', 'edgecolor': '#b6a99c', 'linecolor': '#b6a99c'},
         'other': {'facecolor': '#d9d0c9', 'edgecolor': '#b6a99c', 'linecolor': '#b6a99c'},
         'yes': {'facecolor': '#d9d0c9', 'edgecolor': '#b6a99c', 'linecolor': '#b6a99c'},
     },
@@ -42,7 +59,7 @@ tag_styles = {
         'footway': {'linecolor': 'salmon', 'linestyle': 'dotted'},
         'giveway': {'markercolor': 'none'},
         'motorway': {'linecolor': '#e892a2'},
-        'path': {'linecolor': 'limegreen'},
+        'path': {'linecolor': 'salmon', 'linestyle': 'dotted'},
         'pedestrian': {'facecolor': '#dddde8', 'linecolor': '#dddde8'},
         'primary': {'linecolor': '#fcd6a4'},
         'residential': {'linecolor': '#ffffff', 'linewidth': 4},
@@ -50,7 +67,7 @@ tag_styles = {
         'secondary': {'linecolor': '#f7fabf'},
         'streetlamp': {'markercolor': 'none'},
         'tertiary': {'linecolor': '#ffffff', 'linewidth': 8},
-        'track': {'linecolor': '#996600'},
+        'track': {'linecolor': '#996600', 'linestyle': 'dashdot'},
         'traffic_signals': {'markercolor': '#545454'},
         'trunk': {'linecolor': '#f9b29c'},
         'turning_circle': {'markercolor': '#ffffff'},
@@ -61,12 +78,13 @@ tag_styles = {
         'allotments': {'facecolor': '#c9e1bf'},
         'cemetery': {'facecolor': '#aacbaf'},
         'commercial': {'facecolor': '#f2dad9', 'edgecolor': '#d1b2b0', 'linecolor': '#d1b2b0'},
-        'construction': {'facecolor': '#c7c7b4'},
+        'construction': {'facecolor': '#c7c7b4', 'edgecolor': 'none'},
         'farm': {'facecolor': 'red'},
         'farmland': {'facecolor': '#eef0d5', 'edgecolor': '#c7c9ae', 'linecolor': '#c7c9ae'},
         'farmyard': {'facecolor': '#f5dcba', 'edgecolor': '#d1b48c', 'linecolor': '#d1b48c'},
-        'forest': {'facecolor': '#add19e'},
-        'grass': {'facecolor': '#cdebb0'},
+        'forest': {'facecolor': '#add19e', 'edgecolor': 'none'},
+        'garages': {'facecolor': '#dfddce', 'edgecolor': 'none'},
+        'grass': {'facecolor': '#cdebb0', 'edgecolor': 'none'},
         'greenfield': {'facecolor': 'none'},
         'industrial': {'facecolor': '#ebdbe8', 'edgecolor': '#c6b3c3', 'linecolor': '#c6b3c3'},
         'meadow': {'facecolor': '#cdebb0'},
@@ -78,22 +96,40 @@ tag_styles = {
     },
     'leisure': {
         'common': {'facecolor': 'none'},
+        'nature_reserve': {'facecolor': 'none', 'edgecolor': '#add19e'}, # added
+        'marina': {'facecolor': 'none', 'edgecolor': 'blue', 'linecolor': 'blue'}, # added
         'park': {'facecolor': '#c8facc'},
         'pitch': {'facecolor': '#aae0cb', 'edgecolor': '#6e9d8a'},
         'stadium': {'facecolor': 'none'},
         'other': {'facecolor': 'red'},
     },
     'natural': {
+        # generic
+        'bare_ground': {'facecolor': '#eee5dc', 'edgecolor': 'none'},
+        'land-color': {'facecolor': '#f2efe9', 'edgecolor': 'none'},
+        'landform-color': {'markercolor': '#d08f55'},
+        # tags
+        'cliff': {'facecolor': 'none', 'linecolor': 'lightgrey'}, # added
+        'coastline': {'facecolor': 'none', 'edgecolor': 'none', 'linecolor': 'none'},
         'forest': {'facecolor': '#add19e'},
+        'heath': {'facecolor': '#d6d99f', 'edgecolor': 'none'},
         'scrub': {'facecolor': '#c8d7ab'},
         'tree': {'markercolor': 'green'},
+        'tree_row': {'linecolor': 'green'},
         'water': {'facecolor': '#aad3df', 'edgecolor': '#9cf', 'linecolor': '#9cf'},
+        'wetland': {'facecolor': '#add6c8', 'edgecolor': 'none'},
         'other': {'facecolor': 'red'},
+    },
+    'place': {
+        'island': {'facecolor': '#f2efe9', 'edgecolor': '#8d618b', 'linecolor': '#8d618b'},
+        'other': {'facecolor': 'none'},
     },
     'power': {
         'other': {'facecolor': 'red'},
+        'pole': {'markercolor': '#928f8f'},
     },
     'shop': {
+        'shop-icon': {'markercolor': '#ac39ac'},
         'other': {'facecolor': '#ac39ac', 'linecolor': '#ac39ac', 'markercolor': '#ac39ac'},
     },
     'waterway': {
@@ -105,6 +141,7 @@ tag_styles = {
 tag_styles['amenity']['culture'] = tag_styles['amenity']['amenity-brown']
 tag_styles['amenity']['public-service'] = tag_styles['amenity']['amenity-brown']
 # tags that are styled like other tags
+tag_styles['amenity']['art_centre'] = tag_styles['amenity']['societal_amenities']
 tag_styles['amenity']['atm'] = tag_styles['amenity']['amenity-brown']
 tag_styles['amenity']['bank'] = tag_styles['amenity']['public-service']
 tag_styles['amenity']['bench'] = tag_styles['amenity']['man-made-icon']
@@ -116,6 +153,7 @@ tag_styles['amenity']['fast_food'] = tag_styles['amenity']['gastronomy-icon']
 tag_styles['amenity']['fuel'] = tag_styles['highway']['transportation-icon']
 tag_styles['amenity']['grave_yard'] = tag_styles['landuse']['cemetery']
 tag_styles['amenity']['hospital'] = tag_styles['amenity']['societal_amenities']
+tag_styles['amenity']['kindergarten'] = tag_styles['amenity']['societal_amenities']
 tag_styles['amenity']['library'] = tag_styles['amenity']['culture']
 tag_styles['amenity']['pharmacy'] = tag_styles['amenity']['health-color']
 tag_styles['amenity']['post_box'] = tag_styles['amenity']['amenity-brown']
@@ -124,6 +162,7 @@ tag_styles['amenity']['pub'] = tag_styles['amenity']['gastronomy-icon']
 tag_styles['amenity']['public-service'] = tag_styles['amenity']['amenity-brown']
 tag_styles['amenity']['recycling'] = tag_styles['amenity']['amenity-brown']
 tag_styles['amenity']['school'] = tag_styles['amenity']['societal_amenities']
+tag_styles['amenity']['shelter'] = tag_styles['amenity']['man-made-icon']
 tag_styles['amenity']['street_lamp'] = tag_styles['highway']['streetlamp']
 tag_styles['amenity']['toilets'] = tag_styles['amenity']['amenity-brown']
 tag_styles['amenity']['waste_basket'] = tag_styles['amenity']['man-made-icon']
@@ -137,6 +176,8 @@ tag_styles['barrier']['motorcycle_barrier'] = tag_styles['barrier']['barrier-ico
 tag_styles['barrier']['stile'] = tag_styles['barrier']['barrier-icon']
 
 tag_styles['highway']['bus_stop'] = tag_styles['highway']['transportation-icon']
+tag_styles['highway']['primary_link'] = tag_styles['highway']['primary']
+tag_styles['highway']['secondary_link'] = tag_styles['highway']['secondary']
 tag_styles['highway']['service'] = tag_styles['highway']['residential']
 tag_styles['highway']['unclassified'] = tag_styles['highway']['residential']
 
@@ -145,14 +186,25 @@ tag_styles['landuse']['grave_yard'] = tag_styles['landuse']['cemetery']
 tag_styles['landuse']['leisure'] = tag_styles['landuse']['park']
 tag_styles['landuse']['recreation_ground'] = tag_styles['landuse']['leisure']
 
+tag_styles['leisure']['garden'] = tag_styles['landuse']['grass']
 tag_styles['leisure']['playground'] = tag_styles['landuse']['leisure']
 tag_styles['leisure']['recreation_ground'] = tag_styles['landuse']['leisure']
 tag_styles['leisure']['track'] = tag_styles['leisure']['pitch']
 
+tag_styles['natural']['bare_rock'] = tag_styles['natural']['bare_ground']
+tag_styles['natural']['grassland'] = tag_styles['landuse']['grass']
+tag_styles['natural']['peak'] = tag_styles['natural']['landform-color']
+tag_styles['natural']['saddle'] = tag_styles['natural']['landform-color']
+tag_styles['natural']['scree'] = tag_styles['natural']['bare_ground']
 tag_styles['natural']['wood'] = tag_styles['natural']['forest']
-tag_styles['natural']['wetland'] = tag_styles['landuse']['grass']
+#tag_styles['natural']['wetland'] = tag_styles['landuse']['grass']
+
+tag_styles['place']['islet'] = tag_styles['place']['island']
 
 tag_styles['power']['other'] = tag_styles['landuse']['industrial']
+tag_styles['power']['tower'] = tag_styles['power']['pole']
+
+tag_styles['shop']['butcher'] = tag_styles['shop']['shop-icon']
 
 # Personal added
 tag_styles['landuse']['aquaculture'] = tag_styles['landuse']['leisure']
