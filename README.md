@@ -1,4 +1,4 @@
-# Notebooks for testing the [OSMnx](https://github.com/gboeing/osmnx) `geometries` module
+# Notebooks testing the [OSMnx](https://github.com/gboeing/osmnx) `geometries` module
 
 This is a set of notebooks used during the development of the new `geometries` module for OSMnx.
 
